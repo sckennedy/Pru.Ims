@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Pru.Ims.Core.Implementation.Services;
+using Pru.Ims.Core.Services;
 
 namespace Pru.Ims.Web
 {
@@ -25,6 +27,7 @@ namespace Pru.Ims.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddSingleton<ITodoItemService, FakeTodoItemService>();
             services.AddMvc();
         }
 

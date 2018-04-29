@@ -1,7 +1,7 @@
 {
   "name": "pru.ims.web",
   "description": "ASP.NET Core & VueJS Starter project",
-  "author": "Mark Pieszak",
+  "author": "Simon Kennedy",
   "scripts": {
     "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
