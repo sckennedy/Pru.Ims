@@ -10,14 +10,24 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\components\Home.xaml" />
     <None Remove="yarn.lock" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\assets\scss\css" />
+    <Content Include="ClientApp\assets\scss\site.scss" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Pru.Ims.Core.Implementation\Pru.Ims.Core.Implementation.csproj" />
     <ProjectReference Include="..\Pru.Ims.Core\Pru.Ims.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ClientApp\components\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

@@ -2,12 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const bundleOutputDir = './wwwroot/dist';
+const extractSass = new ExtractTextPlugin({
+    filename: "site.css",
+    disable: process.env.NODE_ENV === "development"
+});
+
+process.traceDeprecation = true
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     return [{
         stats: { modules: false },
-        entry: { 'main': './ClientApp/boot-app.js' },
+        entry: { 'main': './ClientApp/main.js' },
         resolve: {
             extensions: ['.js', '.vue'],
             alias: {
@@ -25,17 +31,59 @@ module.exports = (env) => {
         },
         module: {
             rules: [
-                { test: /\.vue$/, include: /ClientApp/, use: 'vue-loader' },
-                { test: /\.js$/, include: /ClientApp/, use: 'babel-loader' },
-                { test: /\.css$/, use: isDevBuild ? ['style-loader', 'css-loader'] : ExtractTextPlugin.extract({ use: 'css-loader' }) },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                {
+                    test: /\.css$/,
+                    use: [
+                        'vue-style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ],
+                },
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            'scss': [
+                                'vue-style-loader',
+                                'css-loader',
+                                'sass-loader'
+                            ],
+                            'sass': [
+                                'vue-style-loader',
+                                'css-loader',
+                                'sass-loader?indentedSyntax'
+                            ]
+                        }
+                    }
+                },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'sass-loader']
+                    })
+                },
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|jpg|gif|svg)$/,
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]?[hash]'
+                    }
+                }
             ]
         },
         plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,
                 manifest: require('./wwwroot/dist/vendor-manifest.json')
-            })
+            }),
+            new ExtractTextPlugin('style.css')
         ].concat(isDevBuild ? [
             // Plugins that apply in development builds only
             new webpack.SourceMapDevToolPlugin({

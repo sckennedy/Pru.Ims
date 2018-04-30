@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
-import App from './components/App'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
+
+import App from './components/App.vue'
+
+import './assets/scss/site.scss'
 
 // Sync Vue router and the Vuex store
 sync(store, router)
@@ -12,8 +15,9 @@ const app = new Vue({
     el: '#app',
     store,
     router,
-    template: '<App/>',
-    components: { App }
+    render: h => h(App)
+    //template: '<App/>',
+    //components: { App }
 })
 
 export {
@@ -22,4 +26,4 @@ export {
     store
 }
 
-store.dispatch('checkLoggedIn')
+//store.dispatch('checkLoggedIn')

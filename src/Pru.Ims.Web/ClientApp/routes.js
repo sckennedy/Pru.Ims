@@ -1,6 +1,7 @@
 import store from './store'
-import login from './components/login.vue'
-import dashboard from './components/dashboard.vue'
+import App from './components/App.vue'
+import Home from './components/Home.vue'
+import About from './components/About.vue'
 
 function requireAuth (to, from, next) {
     if (!store.state.loggedIn) {
@@ -14,7 +15,7 @@ function requireAuth (to, from, next) {
 }
 
 export const routes = [
-    { path: '/', component: login, beforeEnter: requireAuth, display: 'Home', style: 'glyphicon glyphicon-home' },
-    { path: '/login', component: dashboard, display: 'Login', style: 'glyphicon glyphicon-education' },
-    { path: '/logout', display: 'Logout', style: 'glyphicon glyphicon-th-list' }
+    //{ path: '/', name: 'Home', component: App },
+    { path: '/home', name: 'Home', component: Home },
+    { path: '/about', name: 'About', component: About}
 ]
