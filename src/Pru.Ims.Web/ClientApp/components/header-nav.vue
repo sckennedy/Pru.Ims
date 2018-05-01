@@ -1,12 +1,12 @@
 <template>
-    <div id="header-nav">
+    <div id="header-nav" >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <router-link to="/" class="navbar-brand">PRU - IMS</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="isLoggedIn">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <router-link to="/Home" class="nav-link">Home</router-link>
@@ -25,20 +25,17 @@
 </template>
 <script>
     export default {
-        name: 'header-nav'
+        name: 'header-nav',
+        computed: {
+            isLoggedIn() {
+                return this.$store.state.loggedIn
+            },
+            name() {
+                return this.$store.state.userName
+            }
+        }
     }
 </script>
 <style>
 
-    .slide-enter-active, .slide-leave-active {
-        transition: max-height .35s
-    }
-
-    .slide-enter, .slide-leave-to {
-        max-height: 0px;
-    }
-
-    .slide-enter-to, .slide-leave {
-        max-height: 20em;
-    }
 </style>
