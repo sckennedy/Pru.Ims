@@ -1,5 +1,5 @@
 <template>
-    <h1>Teachers Index</h1>
+    <h1>Teachers</h1>
 </template>
 
 <script>

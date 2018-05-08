@@ -21,7 +21,6 @@
                                class="my-3"></v-divider>
                     <v-list-tile v-else
                                  :key="i"
-                                 router
                                  :to="item.link">
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>

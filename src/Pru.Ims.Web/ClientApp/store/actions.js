@@ -11,7 +11,7 @@ export const actions = {
 
     async login({ dispatch, commit }, data) {
         // Todo: log the user in
-        commit('loggedIn', { userName: data.email })
+        commit('loggedIn', { id: 1, name: data.email })
     },
 
     async logout({ commit }) {

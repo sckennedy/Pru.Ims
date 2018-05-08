@@ -1,5 +1,5 @@
 <template>
-    <h1>Students Index</h1>
+    <h1>Teacher</h1>
 </template>
 
 <script>
