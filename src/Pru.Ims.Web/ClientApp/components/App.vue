@@ -1,5 +1,6 @@
 <template>
     <v-app>
+        <vue-progress-bar></vue-progress-bar>
         <header-nav></header-nav>
         <v-content>
             <v-container fluid>
@@ -12,13 +13,15 @@
 
 <script>
     import HeaderNav from './header-nav'
+    import navBar from 'components/shared/navBar.vue'
 
     export default {
         components: {
-            HeaderNav
+            HeaderNav,
+            navBar
         }
     }
 </script>
 
-<style lang="scss">
+<style>
 </style>

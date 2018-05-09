@@ -1,15 +1,18 @@
 <template>
-    <div class="about">
-        <h1>About</h1>
+    <div>
+        <h1>Student Home</h1>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+
     export default {
-        name: 'about'
+        name: 'home'
     }
 </script>
 
 <style>
 
+ 
 </style>
